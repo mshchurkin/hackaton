@@ -16,6 +16,7 @@ namespace hackaton.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "check";
 
             return View();
         }
