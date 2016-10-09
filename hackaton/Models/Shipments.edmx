@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Shipments.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ShipmentsStoreContainer">
+    <EntitySet Name="CargoSet" EntityType="Shipments.Store.CargoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="Shipments.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransportSet" EntityType="Shipments.Store.TransportSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CargoAttributeSet" EntityType="Shipments.Store.CargoAttributeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCargo" EntityType="Shipments.Store.UserCargo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CargoCargoAttribute" Association="Shipments.Store.CargoCargoAttribute">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="CargoAttribute" EntitySet="CargoAttributeSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCargo_User" Association="Shipments.Store.FK_UserCargo_User">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="UserCargo" EntitySet="UserCargo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCargo_Cargo" Association="Shipments.Store.FK_UserCargo_Cargo">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="UserCargo" EntitySet="UserCargo" />
+    </AssociationSet>
+    <AssociationSet Name="CargoTransport" Association="Shipments.Store.CargoTransport">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="Transport" EntitySet="TransportSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CargoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Transport_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isCustomer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Source" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Target" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mileage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CargoAttributeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Attribute" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cargo_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCargo">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Cargo_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Cargo_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CargoCargoAttribute">
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="1" />
+    <End Role="CargoAttribute" Type="Shipments.Store.CargoAttributeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CargoAttribute">
+        <PropertyRef Name="Cargo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CargoTransport">
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="*" />
+    <End Role="Transport" Type="Shipments.Store.TransportSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cargo">
+        <PropertyRef Name="Transport_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCargo_User">
+    <End Role="User" Type="Shipments.Store.UserSet" Multiplicity="1" />
+    <End Role="UserCargo" Type="Shipments.Store.UserCargo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCargo">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCargo_Cargo">
+    <End Role="UserCargo" Type="Shipments.Store.UserCargo" Multiplicity="*" />
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCargo">
+        <PropertyRef Name="Cargo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Shipments" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ShipmentsContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CargoSet" EntityType="Shipments.Cargo" />
+          <EntitySet Name="UserSet" EntityType="Shipments.User" />
+          <EntitySet Name="TransportSet" EntityType="Shipments.Transport" />
+          <EntitySet Name="CargoAttributeSet" EntityType="Shipments.CargoAttribute" />
+          <AssociationSet Name="CargoCargoAttribute" Association="Shipments.CargoCargoAttribute">
+            <End Role="Cargo" EntitySet="CargoSet" />
+            <End Role="CargoAttribute" EntitySet="CargoAttributeSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserCargo" Association="Shipments.UserCargo">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Cargo" EntitySet="CargoSet" />
+          </AssociationSet>
+          <AssociationSet Name="CargoTransport" Association="Shipments.CargoTransport">
+            <End Role="Cargo" EntitySet="CargoSet" />
+            <End Role="Transport" EntitySet="TransportSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <NavigationProperty Name="CargoAttribute" Relationship="Shipments.CargoCargoAttribute" FromRole="Cargo" ToRole="CargoAttribute" />
+          <NavigationProperty Name="User" Relationship="Shipments.UserCargo" FromRole="Cargo" ToRole="User" />
+          <NavigationProperty Name="Transport" Relationship="Shipments.CargoTransport" FromRole="Cargo" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" />
+          <Property Name="isCustomer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cargo" Relationship="Shipments.UserCargo" FromRole="User" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" />
+          <Property Name="Target" Type="String" Nullable="false" />
+          <Property Name="Mileage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cargo" Relationship="Shipments.CargoTransport" FromRole="Transport" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="CargoAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Attribute" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="Cargo" Relationship="Shipments.CargoCargoAttribute" FromRole="CargoAttribute" ToRole="Cargo" />
+        </EntityType>
+        <Association Name="CargoCargoAttribute">
+          <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="1" />
+          <End Type="Shipments.CargoAttribute" Role="CargoAttribute" Multiplicity="*" />
+        </Association>
+        <Association Name="UserCargo">
+          <End Type="Shipments.User" Role="User" Multiplicity="*" />
+          <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="*" />
+        </Association>
+        <Association Name="CargoTransport">
+          <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="*" />
+          <End Type="Shipments.Transport" Role="Transport" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShipmentsStoreContainer" CdmEntityContainer="ShipmentsContainer">
+    <EntitySetMapping Name="CargoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.Cargo)">
+        <MappingFragment StoreEntitySet="CargoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="isCustomer" ColumnName="isCustomer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.Transport)">
+        <MappingFragment StoreEntitySet="TransportSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CargoAttributeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.CargoAttribute)">
+        <MappingFragment StoreEntitySet="CargoAttributeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CargoCargoAttribute" TypeName="Shipments.CargoCargoAttribute" StoreEntitySet="CargoAttributeSet">
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Cargo_Id" />
+      </EndProperty>
+      <EndProperty Name="CargoAttribute">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCargo" TypeName="Shipments.UserCargo" StoreEntitySet="UserCargo">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Cargo_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CargoTransport" TypeName="Shipments.CargoTransport" StoreEntitySet="CargoSet">
+      <EndProperty Name="Transport">
+        <ScalarProperty Name="Id" ColumnName="Transport_Id" />
+      </EndProperty>
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

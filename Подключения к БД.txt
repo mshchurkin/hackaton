@@ -1,0 +1,5 @@
+Миша
+  <connectionStrings>
+    <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-hackaton-20161009010607.mdf;Initial Catalog=aspnet-hackaton-20161009010607;Integrated Security=True" providerName="System.Data.SqlClient" />
+    <add name="ShipmentsContainer" connectionString="metadata=res://*/Models.Shipments.csdl|res://*/Models.Shipments.ssdl|res://*/Models.Shipments.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\Projects;initial catalog=Shipments;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
