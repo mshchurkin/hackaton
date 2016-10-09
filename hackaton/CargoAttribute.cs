@@ -7,24 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace hackaton.Models
+namespace hackaton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Transport
+    public partial class CargoAttribute
     {
-        public Transport()
-        {
-            this.Cargo = new HashSet<Cargo>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Source { get; set; }
-        public string Target { get; set; }
-        public int Mileage { get; set; }
+        public string Attribute { get; set; }
+        public string Value { get; set; }
     
-        public virtual ICollection<Cargo> Cargo { get; set; }
+        public virtual Cargo Cargo { get; set; }
     }
 }

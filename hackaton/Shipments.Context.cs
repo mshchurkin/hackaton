@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace hackaton.Models
+namespace hackaton
 {
     using System;
     using System.Data.Entity;

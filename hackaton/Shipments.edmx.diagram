@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="471c53b323d2483abeb86f221af4e155" Name="Diagram1" >
         <EntityTypeShape EntityType="Shipments.Cargo" Width="1.5" PointX="4.75" PointY="2" />
-        <EntityTypeShape EntityType="Shipments.User" Width="1.5" PointX="9.5" PointY="1.25" />
+        <EntityTypeShape EntityType="Shipments.User" Width="1.5" PointX="2.75" PointY="0.5" />
         <EntityTypeShape EntityType="Shipments.Transport" Width="1.5" PointX="6.875" PointY="1.625" />
         <EntityTypeShape EntityType="Shipments.CargoAttribute" Width="1.5" PointX="5.375" PointY="4.75" />
         <AssociationConnector Association="Shipments.CargoCargoAttribute" />

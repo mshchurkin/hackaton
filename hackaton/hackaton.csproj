@@ -166,33 +166,34 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Cargo.cs">
+    <Compile Include="Cargo.cs">
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CargoAttribute.cs">
+    <Compile Include="CargoAttribute.cs">
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CargoRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IndexRepository.cs" />
-    <Compile Include="Models\Shipments.Context.cs">
+    <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Shipments.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shipments.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Shipments.cs">
+    <Compile Include="Shipments.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Shipments.Designer.cs">
+    <Compile Include="Shipments.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shipments.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Transport.cs">
+    <Compile Include="Transport.cs">
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="User.cs">
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,24 +206,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Shipments.Context.tt">
+    <Content Include="Shipments.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Shipments.Context.cs</LastGenOutput>
       <DependentUpon>Shipments.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Shipments.edmx.sql" />
-    <Content Include="Models\Shipments.tt">
+    <Content Include="Shipments.edmx.sql" />
+    <Content Include="Shipments.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Shipments.cs</LastGenOutput>
       <DependentUpon>Shipments.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Shipments.edmx">
+    <EntityDeploy Include="Shipments.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Shipments.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Shipments.edmx.diagram">
+    <Content Include="Shipments.edmx.diagram">
       <DependentUpon>Shipments.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
