@@ -172,8 +172,11 @@
     <Compile Include="CargoAttribute.cs">
       <DependentUpon>Shipments.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CargoAttributeRepository.cs" />
     <Compile Include="Models\CargoRepository.cs" />
+    <Compile Include="Models\DataManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\TransportRepository.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Shipments.Context.cs">
       <AutoGen>True</AutoGen>
