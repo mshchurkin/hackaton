@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hackaton.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,13 @@ namespace hackaton.Controllers
 {
     public class MainController : Controller
     {
+        private DataManager _DataManager;
+
+        public MainController(DataManager _DM)
+        {
+            _DataManager = _DM;
+
+        }
         //
         // GET: /Main/
         public ActionResult Main()
@@ -15,23 +23,10 @@ namespace hackaton.Controllers
             return View();
         }
 
-        public JsonResult GetData()
+        public JsonResult GetData(int _UserId)
         {
-            List<Cargo> cargos = new List<Cargo>();
-            cargos.Add(new Cargo()
-            {
-                Id = 1,
-                Name="Груз 1",
-                GeoLat=58.014660,
-                GeoLong =56.281562
-            });
-            cargos.Add(new Cargo()
-            {
-                Id = 2,
-                Name = "Груз 2",
-                GeoLat = 58.013114,
-                GeoLong = 56.300702
-            });
+            IEnumerable<Cargo> c= _DataManager.CR.Cargos(_UserId);
+            List<Cargo> cargos = c.ToList<Cargo>();
             return Json(cargos, JsonRequestBehavior.AllowGet);
         }
 	}
