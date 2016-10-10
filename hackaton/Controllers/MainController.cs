@@ -18,8 +18,9 @@ namespace hackaton.Controllers
         }
         //
         // GET: /Main/
-        public ActionResult Main()
+        public ActionResult Main(int _UserId)
         {
+            ViewData["userId"] = _UserId;
             return View();
         }
 

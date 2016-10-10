@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Main";
+    int userid=Convert.ToInt32(ViewData["userId"]);
     <div>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyB_4-CULKnLPFzEAxfF9xtWmtzwRV6cX0A" type="text/javascript"></script>
 
@@ -41,7 +42,7 @@
 
 
         // Получаем данные
-        $.getJSON('@Url.Action("GetData","Home")', function (data) {
+        $.getJSON('@Url.Action("GetData","Home",userId)', function (data) {
             // Проходим по всем данным и устанавливаем для них маркеры
             $.each(data, function getter (i, item) {
                 var marklat=new google.maps.LatLng(item.GeoLat, item.GeoLong);
