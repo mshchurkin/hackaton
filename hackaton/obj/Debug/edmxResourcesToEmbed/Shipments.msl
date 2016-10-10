@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShipmentsStoreContainer" CdmEntityContainer="ShipmentsContainer">
+    <EntitySetMapping Name="CargoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.Cargo)">
+        <MappingFragment StoreEntitySet="CargoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GeoLat" ColumnName="GeoLat" />
+          <ScalarProperty Name="GeoLong" ColumnName="GeoLong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="isCustomer" ColumnName="isCustomer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.Transport)">
+        <MappingFragment StoreEntitySet="TransportSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CargoAttributeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Shipments.CargoAttribute)">
+        <MappingFragment StoreEntitySet="CargoAttributeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CargoCargoAttribute" TypeName="Shipments.CargoCargoAttribute" StoreEntitySet="CargoAttributeSet">
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Cargo_Id" />
+      </EndProperty>
+      <EndProperty Name="CargoAttribute">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCargo" TypeName="Shipments.UserCargo" StoreEntitySet="UserCargo">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Cargo_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CargoTransport" TypeName="Shipments.CargoTransport" StoreEntitySet="CargoSet">
+      <EndProperty Name="Transport">
+        <ScalarProperty Name="Id" ColumnName="Transport_Id" />
+      </EndProperty>
+      <EndProperty Name="Cargo">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

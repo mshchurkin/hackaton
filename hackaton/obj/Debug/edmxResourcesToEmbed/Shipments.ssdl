@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Shipments.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ShipmentsStoreContainer">
+    <EntitySet Name="CargoSet" EntityType="Shipments.Store.CargoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="Shipments.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransportSet" EntityType="Shipments.Store.TransportSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CargoAttributeSet" EntityType="Shipments.Store.CargoAttributeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCargo" EntityType="Shipments.Store.UserCargo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CargoCargoAttribute" Association="Shipments.Store.CargoCargoAttribute">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="CargoAttribute" EntitySet="CargoAttributeSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCargo_User" Association="Shipments.Store.FK_UserCargo_User">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="UserCargo" EntitySet="UserCargo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCargo_Cargo" Association="Shipments.Store.FK_UserCargo_Cargo">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="UserCargo" EntitySet="UserCargo" />
+    </AssociationSet>
+    <AssociationSet Name="CargoTransport" Association="Shipments.Store.CargoTransport">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="Transport" EntitySet="TransportSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CargoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GeoLat" Type="float" Nullable="false" />
+    <Property Name="GeoLong" Type="float" Nullable="false" />
+    <Property Name="Transport_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isCustomer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Source" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Target" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mileage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CargoAttributeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Attribute" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cargo_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCargo">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Cargo_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Cargo_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CargoCargoAttribute">
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="1" />
+    <End Role="CargoAttribute" Type="Shipments.Store.CargoAttributeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CargoAttribute">
+        <PropertyRef Name="Cargo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CargoTransport">
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="*" />
+    <End Role="Transport" Type="Shipments.Store.TransportSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cargo">
+        <PropertyRef Name="Transport_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCargo_User">
+    <End Role="User" Type="Shipments.Store.UserSet" Multiplicity="1" />
+    <End Role="UserCargo" Type="Shipments.Store.UserCargo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCargo">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCargo_Cargo">
+    <End Role="UserCargo" Type="Shipments.Store.UserCargo" Multiplicity="*" />
+    <End Role="Cargo" Type="Shipments.Store.CargoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserCargo">
+        <PropertyRef Name="Cargo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

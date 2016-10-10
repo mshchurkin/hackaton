@@ -22,7 +22,8 @@ namespace hackaton
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Location { get; set; }
+        public double GeoLat { get; set; }
+        public double GeoLong { get; set; }
     
         public virtual ICollection<CargoAttribute> CargoAttribute { get; set; }
         public virtual ICollection<User> User { get; set; }

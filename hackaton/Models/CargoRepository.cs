@@ -22,20 +22,22 @@ namespace hackaton.Models
             return cont.CargoSet.Find(_id);
         }
 
-        public void Add(string _Name, string _Location)
+        public void Add(string _Name, double _GeoLat, double _GeoLong)
         {
             Cargo c = new Cargo();
             c.Name = _Name;
-            c.Location = _Location;
+            c.GeoLat = _GeoLat;
+            c.GeoLong = _GeoLong;
             cont.CargoSet.Add(c);
             cont.SaveChanges();
         }
 
-        public void Edit(int _id, string _Name, string _Location)
+        public void Edit(int _id, string _Name, double _GeoLat, double _GeoLong)
         {
             Cargo c = cont.CargoSet.Find(_id);
             c.Name = _Name;
-            c.Location = _Location;
+            c.GeoLat = _GeoLat;
+            c.GeoLong = _GeoLong;
             cont.SaveChanges();
 
         }

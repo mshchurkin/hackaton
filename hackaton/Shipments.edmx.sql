@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/09/2016 14:05:32
--- Generated from EDMX file: \\mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\Models\Shipments.edmx
+-- Date Created: 10/10/2016 08:46:02
+-- Generated from EDMX file: \\mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\Shipments.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,38 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CargoCargoAttribute]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CargoAttributeSet] DROP CONSTRAINT [FK_CargoCargoAttribute];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCargo_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCargo] DROP CONSTRAINT [FK_UserCargo_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCargo_Cargo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCargo] DROP CONSTRAINT [FK_UserCargo_Cargo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CargoTransport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CargoSet] DROP CONSTRAINT [FK_CargoTransport];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CargoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CargoSet];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[TransportSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TransportSet];
+GO
+IF OBJECT_ID(N'[dbo].[CargoAttributeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CargoAttributeSet];
+GO
+IF OBJECT_ID(N'[dbo].[UserCargo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserCargo];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,7 +58,8 @@ GO
 CREATE TABLE [dbo].[CargoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Location] nvarchar(max)  NOT NULL,
+    [GeoLat] float  NOT NULL,
+    [GeoLong] float  NOT NULL,
     [Transport_Id] int  NOT NULL
 );
 GO

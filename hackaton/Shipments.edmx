@@ -34,7 +34,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GeoLat" Type="float" Nullable="false" />
+    <Property Name="GeoLong" Type="float" Nullable="false" />
     <Property Name="Transport_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserSet">
@@ -151,10 +152,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="GeoLat" Type="Double" Nullable="false" />
           <NavigationProperty Name="CargoAttribute" Relationship="Shipments.CargoCargoAttribute" FromRole="Cargo" ToRole="CargoAttribute" />
           <NavigationProperty Name="User" Relationship="Shipments.UserCargo" FromRole="Cargo" ToRole="User" />
           <NavigationProperty Name="Transport" Relationship="Shipments.CargoTransport" FromRole="Cargo" ToRole="Transport" />
+          <Property Name="GeoLong" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -211,7 +213,8 @@
         <MappingFragment StoreEntitySet="CargoSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="GeoLat" ColumnName="GeoLat" />
+          <ScalarProperty Name="GeoLong" ColumnName="GeoLong" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Shipments" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ShipmentsContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CargoSet" EntityType="Shipments.Cargo" />
+    <EntitySet Name="UserSet" EntityType="Shipments.User" />
+    <EntitySet Name="TransportSet" EntityType="Shipments.Transport" />
+    <EntitySet Name="CargoAttributeSet" EntityType="Shipments.CargoAttribute" />
+    <AssociationSet Name="CargoCargoAttribute" Association="Shipments.CargoCargoAttribute">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="CargoAttribute" EntitySet="CargoAttributeSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserCargo" Association="Shipments.UserCargo">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Cargo" EntitySet="CargoSet" />
+    </AssociationSet>
+    <AssociationSet Name="CargoTransport" Association="Shipments.CargoTransport">
+      <End Role="Cargo" EntitySet="CargoSet" />
+      <End Role="Transport" EntitySet="TransportSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="GeoLat" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CargoAttribute" Relationship="Shipments.CargoCargoAttribute" FromRole="Cargo" ToRole="CargoAttribute" />
+    <NavigationProperty Name="User" Relationship="Shipments.UserCargo" FromRole="Cargo" ToRole="User" />
+    <NavigationProperty Name="Transport" Relationship="Shipments.CargoTransport" FromRole="Cargo" ToRole="Transport" />
+    <Property Name="GeoLong" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" />
+    <Property Name="isCustomer" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cargo" Relationship="Shipments.UserCargo" FromRole="User" ToRole="Cargo" />
+  </EntityType>
+  <EntityType Name="Transport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Source" Type="String" Nullable="false" />
+    <Property Name="Target" Type="String" Nullable="false" />
+    <Property Name="Mileage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cargo" Relationship="Shipments.CargoTransport" FromRole="Transport" ToRole="Cargo" />
+  </EntityType>
+  <EntityType Name="CargoAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Attribute" Type="String" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" />
+    <NavigationProperty Name="Cargo" Relationship="Shipments.CargoCargoAttribute" FromRole="CargoAttribute" ToRole="Cargo" />
+  </EntityType>
+  <Association Name="CargoCargoAttribute">
+    <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="1" />
+    <End Type="Shipments.CargoAttribute" Role="CargoAttribute" Multiplicity="*" />
+  </Association>
+  <Association Name="UserCargo">
+    <End Type="Shipments.User" Role="User" Multiplicity="*" />
+    <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="*" />
+  </Association>
+  <Association Name="CargoTransport">
+    <End Type="Shipments.Cargo" Role="Cargo" Multiplicity="*" />
+    <End Type="Shipments.Transport" Role="Transport" Multiplicity="1" />
+  </Association>
+</Schema>
