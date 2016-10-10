@@ -15,7 +15,7 @@ namespace hackaton.Models
         }
         public IEnumerable<Cargo> Cargos(int _UserId)
         {
-            return cont.CargoSet.Where(c => c.User.Contains(cont.UserSet.Find(_UserId)));
+            return cont.CargoSet;//.Where(c => c.User.Contains(cont.UserSet.Find(_UserId)));
         }
         public Cargo GetCargo(int _id)
         {

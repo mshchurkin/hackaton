@@ -9,24 +9,25 @@ namespace hackaton.Controllers
 {
     public class MainController : Controller
     {
-        private DataManager _DataManager;
+        private static int _UserId = 1;
+        private DataManager _DataManager=new DataManager();
 
-        public MainController(DataManager _DM)
+        public MainController(/*DataManager _DM*/)
         {
-            _DataManager = _DM;
+            //_DataManager = _DM;
 
         }
         //
         // GET: /Main/
-        public ActionResult Main(int _UserId)
+        public ActionResult Main(/*int _UserId*/)
         {
-            ViewData["userId"] = _UserId;
+            //this._UserId = _UserId;
             return View();
         }
 
-        public JsonResult GetData(int _UserId)
+        public JsonResult GetData()
         {
-            IEnumerable<Cargo> c= _DataManager.CR.Cargos(_UserId);
+            IEnumerable<Cargo> c = _DataManager.CR.Cargos(_UserId);
             List<Cargo> cargos = c.ToList<Cargo>();
             return Json(cargos, JsonRequestBehavior.AllowGet);
         }
