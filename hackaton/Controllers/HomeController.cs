@@ -17,7 +17,6 @@ namespace hackaton.Controllers
         {
             ViewBag.Message = "Your application description page.";
             ViewBag.Message = "check";
-
             return View();
         }
 
