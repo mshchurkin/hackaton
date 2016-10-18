@@ -41,10 +41,10 @@
 
 
         // Получаем данные
-        $.getJSON('@Url.Action("GetData","Home")', function (data) {
+        $.getJSON('@Url.Action("GetData","Main")', function (data) {
             // Проходим по всем данным и устанавливаем для них маркеры
             $.each(data, function getter (i, item) {
-                var marklat=new google.maps.LatLng(item.GeoLat, item.GeoLong);
+                var marklat = new google.maps.LatLng(item.GeoLat, item.GeoLong);
                 var marker = new google.maps.Marker({
                     'position': marklat,
                     'map': map,
@@ -56,7 +56,7 @@
 
                 // Для каждого объекта добавляем доп. информацию, выводимую в отдельном окне
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='cargosInfo'><h2>Груз " + item.PlaceName
+                    content: "<div class='cargosInfo'><h2>Груз " + item.Name
                 });
 
                 // обработчик нажатия на маркер объекта
