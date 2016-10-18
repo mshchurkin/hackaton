@@ -10,18 +10,17 @@ namespace hackaton.Controllers
     public class MainController : Controller
     {
         private static int _UserId = 1;
-        private DataManager _DataManager=new DataManager();
+        private DataManager _DataManager;
 
-        public MainController(/*DataManager _DM*/)
+        public MainController(DataManager _DM)
         {
-            //_DataManager = _DM;
+            _DataManager = _DM;
 
         }
         //
         // GET: /Main/
-        public ActionResult Main(/*int _UserId*/)
+        public ActionResult Main()
         {
-            //this._UserId = _UserId;
             return View();
         }
 

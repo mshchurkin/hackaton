@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hackaton.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,12 @@ namespace hackaton.Controllers
 {
     public class HomeController : Controller
     {
+        private DataManager _DataManager;
+
+        public HomeController(DataManager _DM)
+        {
+            _DataManager = _DM;
+        }
         public ActionResult Index()
         {
             return View();
