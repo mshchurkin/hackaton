@@ -165,9 +165,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CargoAttributeController.cs" />
+    <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\ControllerFactory.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\TransportController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +277,26 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Main\Main.cshtml" />
+    <Content Include="Views\Cargo\Create.cshtml" />
+    <Content Include="Views\Cargo\Delete.cshtml" />
+    <Content Include="Views\Cargo\Details.cshtml" />
+    <Content Include="Views\Cargo\Edit.cshtml" />
+    <Content Include="Views\Cargo\Index.cshtml" />
+    <Content Include="Views\CargoAttribute\Create.cshtml" />
+    <Content Include="Views\CargoAttribute\Delete.cshtml" />
+    <Content Include="Views\CargoAttribute\Details.cshtml" />
+    <Content Include="Views\CargoAttribute\Edit.cshtml" />
+    <Content Include="Views\CargoAttribute\Index.cshtml" />
+    <Content Include="Views\Transport\Create.cshtml" />
+    <Content Include="Views\Transport\Delete.cshtml" />
+    <Content Include="Views\Transport\Details.cshtml" />
+    <Content Include="Views\Transport\Edit.cshtml" />
+    <Content Include="Views\Transport\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

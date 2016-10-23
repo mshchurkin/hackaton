@@ -30,5 +30,10 @@ namespace hackaton.Controllers
             List<Cargo> cargos = c.ToList<Cargo>();
             return Json(cargos, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult EditCargo()
+        {
+            return RedirectToAction("Index", "Home");
+        }
 	}
 }

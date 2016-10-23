@@ -55,9 +55,11 @@
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
 
                 // Для каждого объекта добавляем доп. информацию, выводимую в отдельном окне
+
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='cargosInfo'><h2>Груз " + item.Name
+                    content:'<button onclick="@Url.Action("EditCargo","Main")>Редактировать</button>'
                 });
+
 
                 // обработчик нажатия на маркер объекта
                 google.maps.event.addListener(marker, 'click', function () {
