@@ -15,6 +15,12 @@ namespace hackaton.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private DataManager _DataManager;
+
+        public AccountController(DataManager _DM)
+
+        { _DataManager = _DM; }
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
