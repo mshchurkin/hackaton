@@ -1,7 +1,7 @@
 ﻿@model hackaton.Cargo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Информация о грузе";
 }
 
 <h2>Details</h2>
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактирование", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "Index")
 </p>
