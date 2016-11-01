@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Добавление атрибута", "Create")
+    @Html.ActionLink("Добавить атрибут", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Value)
         </td>
         <td>
-            @Html.ActionLink("Редактирование", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Информация об атрибуте", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Удаление", "Delete", new { id=item.Id })
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
