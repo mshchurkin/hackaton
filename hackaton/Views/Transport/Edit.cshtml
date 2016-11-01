@@ -11,13 +11,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Transport</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name,"Название:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
@@ -25,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Source, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Source,"Начало маршрута:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Source)
                 @Html.ValidationMessageFor(model => model.Source)
@@ -33,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Target, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Target,"Конец маршрута:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Target)
                 @Html.ValidationMessageFor(model => model.Target)
@@ -41,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Mileage, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Mileage,"Пробег:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Mileage)
                 @Html.ValidationMessageFor(model => model.Mileage)
@@ -50,7 +49,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
