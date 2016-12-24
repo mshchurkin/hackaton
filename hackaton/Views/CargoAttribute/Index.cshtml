@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model IEnumerable<hackaton.CargoAttribute>
 
 @{
@@ -37,3 +38,43 @@
 }
 
 </table>
+=======
+﻿@model IEnumerable<hackaton.CargoAttribute>
+
+@{
+    ViewBag.Title = "Список атрибутов груза";
+}
+
+
+<p>
+    @Html.ActionLink("Добавить атрибут", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Attribute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attribute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Информация об атрибуте", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+>>>>>>> origin/master

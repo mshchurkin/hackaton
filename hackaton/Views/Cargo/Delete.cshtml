@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model hackaton.Cargo
 
 @{
@@ -46,3 +47,52 @@
         </div>
     }
 </div>
+=======
+﻿@model hackaton.Cargo
+
+@{
+    ViewBag.Title = "Удаление груза";
+}
+
+
+<h3>Вы уверены, что хотите удалить?</h3>
+<div>
+    <h4>Cargo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeoLat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeoLat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeoLong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeoLong)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>
+>>>>>>> origin/master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model IEnumerable<hackaton.Cargo>
 
 @{
@@ -42,3 +43,49 @@
 }
 
 </table>
+=======
+﻿@model IEnumerable<hackaton.Cargo>
+
+@{
+    ViewBag.Title = "Список грузов";
+}
+
+
+<p>
+    @Html.ActionLink("Добавить груз", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoLat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoLong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoLat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoLong)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Информация о грузе", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+>>>>>>> origin/master
