@@ -7,13 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using hackaton;
+using hackaton.Models;
 
 namespace hackaton.Controllers
 {
     public class UserController : Controller
     {
+        private DataManager _DataManager;
         private ShipmentsContainer cont = new ShipmentsContainer();
 
+
+        public UserController(DataManager _DM)
+        {
+            _DataManager = _DM;
+        }
         // GET: /User/
         public ActionResult Index()
         {

@@ -15,6 +15,7 @@ namespace hackaton.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        ShipmentsContainer cont;
         private DataManager _DataManager;
 
         public AccountController(DataManager _DM)
@@ -54,6 +55,10 @@ namespace hackaton.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
+                    var uId = from u in cont.UserSet
+                                 where u.Login == model.UserName
+                                 select u;
+                    MainController._UserId = uId.First().Id;
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
@@ -88,6 +93,16 @@ namespace hackaton.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //User u = new User
+                    //{
+                    //    Name = model.UserName,
+                    //    Login = model.UserName,
+                    //    Password = model.Password,
+                    //    isCustomer = false,
+                    //    CompanyName = "check"
+                    //};
+                    //cont.UserSet.Add(u);
+                    //cont.SaveChanges();
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

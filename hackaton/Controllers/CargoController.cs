@@ -7,13 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using hackaton;
+using hackaton.Models;
 
 namespace hackaton.Controllers
 {
     public class CargoController : Controller
     {
-        private ShipmentsContainer cont = new ShipmentsContainer();
+        private DataManager _DataManager;
+        private ShipmentsContainer cont=new ShipmentsContainer();
 
+        public CargoController(DataManager _DM)
+        {
+            _DataManager = _DM;
+        }
         // GET: /Cargo/
         public ActionResult Index()
         {
@@ -50,8 +56,7 @@ namespace hackaton.Controllers
         {
             if (ModelState.IsValid)
             {
-                cont.CargoSet.Add(cargo);
-                cont.SaveChanges();
+                _DataManager.CR.Add(cargo.Name, cargo.GeoLat, cargo.GeoLong);
                 return RedirectToAction("Index");
             }
 
@@ -82,8 +87,7 @@ namespace hackaton.Controllers
         {
             if (ModelState.IsValid)
             {
-                cont.Entry(cargo).State = EntityState.Modified;
-                cont.SaveChanges();
+                _DataManager.CR.Edit(cargo.Id, cargo.Name, cargo.GeoLat, cargo.GeoLong);
                 return RedirectToAction("Index");
             }
             return View(cargo);
@@ -109,19 +113,8 @@ namespace hackaton.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargo cargo = cont.CargoSet.Find(id);
-            cont.CargoSet.Remove(cargo);
-            cont.SaveChanges();
+            _DataManager.CR.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                cont.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

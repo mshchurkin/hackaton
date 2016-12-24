@@ -9,7 +9,7 @@ namespace hackaton.Controllers
 {
     public class MainController : Controller
     {
-        private static int _UserId = 1;
+        public static int _UserId=1;
         private DataManager _DataManager;
 
         public MainController(DataManager _DM)

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/10/2016 08:46:02
+-- Date Created: 11/01/2016 12:19:54
 -- Generated from EDMX file: \\mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\Shipments.edmx
 -- --------------------------------------------------
 
@@ -146,6 +146,7 @@ ADD CONSTRAINT [FK_CargoCargoAttribute]
     REFERENCES [dbo].[CargoSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CargoCargoAttribute'
 CREATE INDEX [IX_FK_CargoCargoAttribute]
@@ -169,6 +170,7 @@ ADD CONSTRAINT [FK_UserCargo_Cargo]
     REFERENCES [dbo].[CargoSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserCargo_Cargo'
 CREATE INDEX [IX_FK_UserCargo_Cargo]
@@ -183,6 +185,7 @@ ADD CONSTRAINT [FK_CargoTransport]
     REFERENCES [dbo].[TransportSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CargoTransport'
 CREATE INDEX [IX_FK_CargoTransport]

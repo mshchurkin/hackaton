@@ -1,7 +1,7 @@
 ﻿@model hackaton.Transport
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание способа перевозки";
 }
 
 <h2>Create</h2>
@@ -11,7 +11,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Transport</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -56,5 +55,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>

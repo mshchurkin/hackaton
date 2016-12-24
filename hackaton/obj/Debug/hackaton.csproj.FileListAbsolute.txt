@@ -53,11 +53,9 @@
 \\Mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 \\Mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\obj\Debug\hackaton.dll
 \\Mac\Home\Documents\Visual Studio 2013\Projects\hackaton\hackaton\obj\Debug\hackaton.pdb
-\\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Web.Http.dll
 \\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Net.Http.Formatting.dll
 \\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Web.Http.xml
 \\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Net.Http.Formatting.xml
-\\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Web.Http.WebHost.dll
 \\mac\home\documents\visual studio 2013\Projects\hackaton\hackaton\bin\System.Web.Http.WebHost.xml
 E:\hackaton\hackaton\bin\hackaton.dll.config
 E:\hackaton\hackaton\bin\hackaton.dll

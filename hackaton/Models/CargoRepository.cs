@@ -15,7 +15,7 @@ namespace hackaton.Models
         }
         public IEnumerable<Cargo> Cargos(int _UserId)
         {
-            IEnumerable<Cargo> result = cont.UserSet.Find(_UserId).Cargo.Select<Cargo,Cargo>(cargo => new Cargo
+            IEnumerable<Cargo> result = cont.UserSet.Find(_UserId).Cargo.Select(cargo => new Cargo
             {
                 Name=cargo.Name,
                 GeoLat=cargo.GeoLat,
